@@ -1,0 +1,12 @@
+
+ <p>本のタイトル:<%= @book.title %></p>
+
+ <p>感想:<%= @book.body %></p>
+
+
+
+<%= link_to "Edit", edit_book_path(@book.id), class:"black_link" %>
+|
+<%= link_to "Back", books_path, class:"black_link" %>
+
+
