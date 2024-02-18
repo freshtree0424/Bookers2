@@ -35,8 +35,9 @@
 
   <% @books.each do |book| %>
   <tr>
-    <td> <%=book.title %> </td>
-    <td> <%=book.body %> </td>
+   <td> <%= image_tag book.user.get_profile_image(100,100) %> </td>
+   <td> <%=book.title %> </td>
+   <td> <%=book.body %> </td>
   </tr>
   <% end %>
 </table>
