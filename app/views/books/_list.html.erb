@@ -1,0 +1,33 @@
+<div>
+  <h3><%= user.name %></h3>
+  <%= image_tag user.get_profile_image(100,100) %>
+  <% if user == current_user %>
+    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+  <% end %>
+</div>
+
+
+ <h2>New book</h2>
+ <% if @book.errors.any? %>
+ <div class="error-message">
+  <h3><%= @book.errors.count %>error prohibited this book from being saved:</h3>
+  <ul>
+    <% book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+</div>
+
+
+<%= form_with model: @book, url: '/books', method: :post do |f| %>
+
+ <h4>本のタイトル</h4>
+ <%= f.text_field :title %>
+
+ <h4>感想</h4>
+ <%= f.text_area :body %>
+
+<%= f.submit 'Create Book', style:"width: 134px; height: 30px; padding: 1px 6px; border: 1px solid black; border-radius: 3px;" %>
+
+ <% end %>

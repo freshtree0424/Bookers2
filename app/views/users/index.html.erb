@@ -1,0 +1,13 @@
+<%= render 'books/list', user: @user %>
+
+<h1>Users</h1>
+ <% @users.each do |user| %>
+
+<p><%= image_tag user.get_profile_image(100,100) %></p>
+
+<p>名前:<%= @user.name %></p>
+
+
+
+<% end%>
+
