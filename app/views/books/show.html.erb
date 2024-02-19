@@ -6,7 +6,7 @@
   <%= link_to user_path(@book.user.id) do %>
   <%= image_tag @book.user.get_profile_image(100,100) %><br>
   <%= @book.user.name%>
-  <% end%>
+  <% end %>
 </p>
 
 <p><%= @book.title %></p>
