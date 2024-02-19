@@ -1,10 +1,17 @@
 <%= render 'list', user: @user %>
 
-<p><%= image_tag @book.user.get_profile_image(100,100) %></p>
+<p>Book detail</p>
 
-<p>本のタイトル:<%= @book.title %></p>
+<p>
+  <%= link_to user_path(@user.id) do %>
+  <%= image_tag @book.user.get_profile_image(100,100) %><br>
+  <%= @user.name%>
+  <% end %>
+</p>
 
-<p>感想:<%= @book.body %></p>
+<p><%= @book.title %></p>
+
+<p><%= @book.body %></p>
 
 
 <% if @book.user == current_user %>

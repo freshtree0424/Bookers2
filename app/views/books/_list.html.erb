@@ -25,10 +25,10 @@
 <%= form_with model: @book, url: '/books', method: :post do |f| %>
 
  <h4>本のタイトル</h4>
- <%= f.text_field :title %>
+ <%= f.text_field :title, value: '' %>
 
  <h4>感想</h4>
- <%= f.text_area :body %>
+ <%= f.text_area :body, value: '' %>
 
 <%= f.submit 'Create Book', style:"width: 134px; height: 30px; padding: 1px 6px; border: 1px solid black; border-radius: 3px;" %>
 
