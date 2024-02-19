@@ -2,8 +2,9 @@ class UsersController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update]
   
   def show
-    @user = User.find(params[:id])
-    @books = @user.books
+    @user = current_user
+    @users = User.find(params[:id])
+    @books = @users.books
     @book = Book.new
   end
 
@@ -14,7 +15,7 @@ class UsersController < ApplicationController
   def update
    @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:notice] = "Book was successfully updated."
+      flash[:notice] = "successfully updated."
       redirect_to user_path
     else
       flash[:alert] = "error"
