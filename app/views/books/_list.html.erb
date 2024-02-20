@@ -1,36 +1,24 @@
- <% if @book.errors.any? %>
- <div class="error-message">
-  <h3><%= @book.errors.count %>errors prohibited this book from being saved:</h3>
-  <ul>
-    <% @book.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
-</div>
 
-<div class="row">
- <div class="col-md-3">
-  <div>
-  <h3><%= user.name %></h3>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <%= @user.introduction %>
-    <p class="edit-item">
-     <%= link_to edit_user_path(@user) do %>
+<table>
+  <tr><th><%= image_tag user.get_profile_image(100,100) %></th></tr>
+  <tr><th>name:<%= user.name %></th></tr>
+  <tr><th>Introduction:<%= user.introduction %></th></tr>
+  <tr><th>
+   <%= link_to edit_user_path(user) do %>
      <i class="fa-solid fa-user-gear"></i>
-     <% end %>
-    </p>
-  </div>
+     <% end %></th></tr>
+</table>
 
-  <div>
-   <h2>New book</h2>
+
+   <h4>New book</h4>
    <%= form_with model: @book, url: '/books', method: :post do |f| %>
-   <h4>本のタイトル</h4>
+   <div>
+   <%= f.label :title, style:"font-size: 15px;" %><br>
    <%= f.text_field :title, value: '' %>
-   <h4>感想</h4>
+   </div>
+   <div>
+   <%= f.label :opinion, style:"font-size: 15px;" %><br>
    <%= f.text_area :body, value: '' %>
-   <%= f.submit 'Create Book', style:"width: 134px; height: 30px; padding: 1px 6px; border: 1px solid black; border-radius: 3px;" %>
-  </div>
- </div>
- <% end %>
-</div>
+   </div>
+   <%= f.submit 'Create Book', style:"width: 150px; height: 40px; padding: 1px 6px; border: 1px solid black; border-radius: 3px;" %>
+   <% end %>

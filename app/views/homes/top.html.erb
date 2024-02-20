@@ -1,18 +1,23 @@
+<%= flash[:notice]%>
 
-<h1>welcome to <i class="fa-solid fa-book"></i><br>
-<span>Bookers</span> !!</h1>
+<div class="container">
+ <div class="row">
+  <div class="col-sm-12.col-md-8.col-lg-5.px-sm-0.mx-auto">
+   <h1>welcome to <i class="fa-solid fa-book"></i><br>Bookers !!</h1>
 
-<p>In Bookers,</p>
-
-<p>
-  you can share and exchange your opinions , <br>
-  inpressions , and emotions
-</p>
-
-<p>about various books!</p>
-
-
-<%= link_to "Log in", new_user_session_path, class:'logbutton' %>
-
-<%= link_to "Sign up", new_user_registration_path, class:'signbutton' %>
-
+     <p>In <i class="fa-solid fa-book"></i>Bookers,</p>
+     <p> you can share and exchange your opinions , <br>
+         inpressions , and emotions</p>
+     <p>about various books!</p>
+  </div>
+ </div>
+ <div class="row">
+  <a class="col-sm-12.col-md-8.col-lg-5.px-sm-0.mx-auto">
+   <%= link_to "Log in", new_user_session_path, style:"border: 1px solid black; color: white; background-color: blue; border-radius: 3px;" %>
+  </a>
+ </div>
+ <div class="row">
+   <%= link_to "Sign up", new_user_registration_path, style:"border: 1px solid black; color: white; background-color: green; border-radius: 3px;" %>
+ </div>
+ 
+</div>

@@ -1,21 +1,26 @@
-<%= render 'list', user: @user %>
+<%= flash[:notice]%>
 
+<div class="container">
+ <div class="row">
+   <div class="col-md-3">
+    <%= render 'list', user: @user %>
+   </div>
+
+
+<div class="col-md-8 offset-md-1">
 <p>Book detail</p>
 
-<p>
-  <%= link_to user_path(@book.user.id) do %>
-  <%= image_tag @book.user.get_profile_image(100,100) %><br>
-  <%= @book.user.name%>
+<table>
+  <tr>
+    <th><%= link_to user_path(@book.user.id) do %>
+        <%= image_tag @book.user.get_profile_image(100,100) %><br>
+        <%= @book.user.name%>
+        <% end %></th>
+    <th><%= @book.title %></th>
+    <th><%= @book.body %></th>
+  <% if @book.user == current_user %>
+    <th><%= link_to "Edit", edit_book_path(@book.id) %></th>
+    <th><%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "本当に消して大丈夫ですか?" %></th>
   <% end %>
-</p>
-
-<p><%= @book.title %></p>
-
-<p><%= @book.body %></p>
-
-
-<% if @book.user == current_user %>
-<%= link_to "Edit", edit_book_path(@book.id), class:"black_link" %>
-|
-<%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "本当に消して大丈夫ですか?" %>
-<% end %>
+  </tr>
+</table>

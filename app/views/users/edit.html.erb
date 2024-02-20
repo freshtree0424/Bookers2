@@ -1,3 +1,5 @@
+<%= flash[:notice]%>
+
  <% if @user.errors.any? %>
  <div class="error-message">
   <h3><%= @user.errors.count %>errors prohibited this book from being saved:</h3>
@@ -9,20 +11,23 @@
 <% end %>
 </div>
 
+<div class="container">
+ <div class="row">
+  <div class="col-sm-12.col-md-8.col-lg-5.px-sm-0.mx-auto">
+   <h2>User info</h2>
+   <%= form_with model: @user do |f| %>
 
-<h2>プロフィール編集</h2>
-
-<%= form_with model: @user do |f| %>
-
-  <label for="inputName">Name</label>
-  <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%>
-
-  <label for="inputImage">ProfileImage</label>
-  <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
-
-  <label for="inputIntroduction">自己紹介文</label>
-  <%= f.text_field :introduction, id:"inputIntroduction" %>
-
-  <%= f.submit "Update User", class:'updatebutton' %>
-
-<% end %>
+    <label for="inputName">Name</label><br>
+    <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%>
+    <br>
+    <label for="inputImage">ProfileImage</label><br>
+    <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
+    <br>
+    <label for="inputIntroduction">自己紹介文</label><br>
+    <%= f.text_field :introduction, id:"inputIntroduction" %>
+    <br>
+    <%= f.submit "Update User", class:'updatebutton' %>
+  <% end %>
+  </div>
+ </div>
+</div>

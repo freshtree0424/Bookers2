@@ -1,19 +1,28 @@
-<%= render 'books/list', user: @user %>
+<%= flash[:notice]%>
 
-<h1>Users</h1>
+<div class="container">
+ <div class="row">
+  <div class="col-md-3">
+  <%= render 'books/list', user: @user %>
+  </div>
+  
+  <div class="col-md-8 offset-md-1">
+   <h1>Users</h1>
 
-<table>
-  <tr>
-   <th>image</th>
-   <th>名前</th>
-   <th></th>
-  </tr>
-
- <% @users.each do |user| %>
-  <tr>
-   <td> <%= image_tag user.get_profile_image(100,100) %> </td>
-   <td> <%= user.name %> </td>
-   <td> <%= link_to "Show",user_path(user.id) %> </td>
-  </tr>
-  <% end %>
-</table>
+   <table>
+     <tr>
+      <th>image</th>
+      <th>名前</th>
+      <th></th>
+     </tr>
+    <% @users.each do |user| %>
+     <tr>
+      <td> <%= image_tag user.get_profile_image(100,100) %> </td>
+      <td> <%= user.name %> </td>
+      <td> <%= link_to "Show",user_path(user.id) %> </td>
+     </tr>
+     <% end %>
+   </table>
+  </div>
+ </div>
+</div>
