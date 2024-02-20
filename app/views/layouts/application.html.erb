@@ -9,39 +9,40 @@
     <script src="https://kit.fontawesome.com/073c906867.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-</head>
+  </head>
 
   <body>
+   <div class="container">
     <header>
-     <nav class="navbar">
-       <div class="container">
-      
-      <a><%= link_to "Bookers", root_path %></a>
-        
-      <ul class="navbar-nav">
+     <nav class="navbar navbar-expand-lg navbar-light">
+
+       <%= link_to "Bookers", root_path %>
+
+      <div class="row">
+      <ul class="navbar-nav ml-auto">
        <% if user_signed_in? %>
-        
+
         <li class="nav-item">
          <%= link_to user_path(current_user) do %>
          <i class="fa-solid fa-house"></i>
          <span>Home</span>
          <% end %>
         </li>
-        
+
         <li class="nav-item">
          <%= link_to users_path do %>
          <i class="fa-solid fa-users"></i>
          <span>Users</span>
          <% end %>
         </li>
-        
+
         <li class="nav-item">
          <%= link_to books_path do %>
          <i class="fa-solid fa-book-open"></i>
-         <span>Bookers</span>
+         <span>Books</span>
          <% end %>
         </li>
-        
+
         <li class="nav-item">
          <%= link_to destroy_user_session_path, method: :delete do %>
          <i class="fa-solid fa-right-from-bracket"></i>
@@ -50,7 +51,7 @@
         </li>
 
        <% else %>
-       
+
         <li class="nav-item">
          <%= link_to root_path do %>
          <i class="fa-solid fa-house"></i>
@@ -64,30 +65,31 @@
          <span>About</span>
          <% end %>
         </li>
-        
+
         <li class="nav-item">
          <%= link_to new_user_registration_path do %>
          <i class="fa-solid fa-user-plus"></i>
          <span>Sign up</span>
          <% end %>
         </li>
-        
+
         <li class="nav-item">
          <%= link_to new_user_session_path do %>
          <i class="fa-solid fa-right-to-bracket"></i>
          <span>Log in</span>
          <% end %>
         </li>
-        
+
        <% end %>
       </ul>
       </div>
      </nav>
     </header>
-    
+
     <% flash.each do |message_type, message| %>
       <div class="flash-message <%= message_type %>"><%= message %></div>
     <% end %>
     <%= yield %>
+   </div>
   </body>
 </html>
