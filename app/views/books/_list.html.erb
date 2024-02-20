@@ -14,9 +14,12 @@
   <h3><%= user.name %></h3>
   <%= image_tag @user.get_profile_image(100,100) %>
   <%= @user.introduction %>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+    <p class="edit-item">
+     <%= link_to edit_user_path(@user) do %>
+     <i class="fa-solid fa-wrench"></i>
+     <% end %>
+    </p>
 </div>
-
 
  <h2>New book</h2>
 
