@@ -11,7 +11,7 @@
   <% end %>
 </div>
 
-<div class="container">
+<div class='container px-5 px-sm-0'>
  <div class="row">
   <div class="col-md-3">
    <%= render 'list', user: @user %>
@@ -19,13 +19,16 @@
   
   <div class="col-md-8 offset-md-1">
   <h1>Books</h1>
-  <table>
+  <table class='table table-hover table-inverse'>
+   <thead>
     <tr>
      <th></th>
      <th>本のタイトル</th>
      <th>感想</th>
+     <th colspan="3"></th>
     </tr>
-
+   </thead>
+   <tbody>
     <% @books.each do |book| %>
     <tr>
      <td><%= link_to user_path(book.user.id) do %>
@@ -35,6 +38,7 @@
      <td> <%= book.body %> </td>
     </tr>
     <% end %>
+   </tbody>
   </table>
   </div>
  </div>
