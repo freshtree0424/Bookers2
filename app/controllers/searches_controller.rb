@@ -3,15 +3,12 @@ class SearchesController < ApplicationController
 
   def search
     @range = params[:range]
- 
+    @book = Book.new
     if @range == "User"
       @users = User.looks(params[:search], params[:word])
-      @book = Book.new
     else
       @books = Book.looks(params[:search], params[:word])
-      @book = Book.new
     end
-    
   end
   
 end

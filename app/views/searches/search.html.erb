@@ -12,10 +12,25 @@
   <% if @range == "User" %>
     <tbody>
       <% @users.each do |user| %>
-        <tr>
-          <td><%= user.name %></td>
-        </tr>
-      <% end %>
+       <tr>
+        <td> <%= image_tag user.get_profile_image(100,100) %> </td>
+        <td> <%= user.name %> </td>
+        <td>フォロー数：<%= user.follower.count %> </td>
+        <td>フォワー数：<%= user.followed.count %></td>
+        <td>
+         <% if current_user.following?(user) %>
+     　　    <%= link_to unfollow_path(user), method: :post do %>
+     　　     フォローを外す
+           <% end %>
+      　　 <% else %>
+           <%= link_to follow_path(user), method: :post do %>
+            フォローする
+           <% end %>
+       </td>
+        <% end %>
+        <td> <%= link_to "Show",user_path(user.id) %> </td>
+       </tr>
+     <% end %>
     </tbody>
   <% else %>
     <tbody>
