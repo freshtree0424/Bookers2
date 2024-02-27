@@ -1,15 +1,11 @@
-
-<table>
-  <tr><th><%= image_tag user.get_profile_image(100,100) %></th></tr>
-  <tr>
-	  <th>name</th>
-	  <th><%= user.name %></th>
-  </tr>
-  <tr>
-	  <th>introduction</th>
-	  <th><%= user.introduction %></th>
-  </tr>
-</table>
+<div class='row'>
+  <h4>User info</h4>
+  <table class='table table-hover table-inverse'>
+    <tr><th><%= image_tag user.get_profile_image(100,100) %></th></tr>
+    <tr><th>name</th><th><%= user.name %></th></tr>
+    <tr><th>introduction</th><th><%= user.introduction %></th></tr>
+  </table>
+</div>
 
 <div class='row'>
   <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
