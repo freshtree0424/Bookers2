@@ -1,6 +1,6 @@
 <table class='table'>
  <tbody>
- <% @book.book_comments.each do |book_comment| %>
+ <% book.book_comments.each do |book_comment| %>
    <tr>
      <td><%= link_to(@book.user) do %>
          <%= image_tag book_comment.user.get_profile_image, size:"100x100" %>
