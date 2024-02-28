@@ -1,13 +1,17 @@
-<% @book.book_comments.each do |book_comment| %>
-  <tr>
-    <td><%= link_to user_path(book_comment.user.id) do %>
-        <%= image_tag book_comment.user.get_profile_image(100,100) %>
-        <%= book_comment.user.name %>
+<table class='table'>
+ <tbody>
+ <% @book.book_comments.each do |book_comment| %>
+   <tr>
+     <td><%= link_to(@book.user) do %>
+         <%= image_tag book_comment.user.get_profile_image, size:"100x100" %>
+         <%= book_comment.user.name %>
         <% end %>
-    </td>
-    <td><%= book_comment.comment %></td>
-    <% if book_comment.user == current_user %>
-    <td><%= link_to "Destroy", book_book_comment_path(book_comment.book, book_comment), method: :delete, class: "btn btn-sm btn-danger" %></td>
-    <% end %>
-  </tr>
-<% end %>
+     </td>
+     <td><%= book_comment.comment %></td>
+     <% if book_comment.user == current_user %>
+     <td><%= link_to "Destroy", book_book_comment_path(book, book_comment), method: :delete, class: "btn btn-sm btn-danger", remote: true %></td>
+     <% end %>
+   </tr>
+ <% end %>
+ </tbody>
+</table>

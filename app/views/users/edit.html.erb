@@ -1,36 +1,27 @@
 <%= flash[:notice]%>
 
- <% if @user.errors.any? %>
- <div class="error-message">
-  <h3><%= @user.errors.count %>errors prohibited this book from being saved:</h3>
-  <ul>
-    <% @user.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
-</div>
 
 <div class="container">
  <div class="row">
   <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
    <h2>User info</h2>
    <%= form_with model: @user do |f| %>
-    <div class="form-group">
-    <label for="inputName">Name</label><br>
-    <%= f.text_field :name, class: "form-control name", autofocus: true, id:"inputName", placeholder:"名前"%>
-    </div>
-    <div class="form-group">
-    <label for="inputImage">ProfileImage</label><br>
-    <%= f.file_field :profile_image, class: "form-control-file user_image", placeholder: "プロフィール画像", accept: "image/*" %>
-    </div>
-    <div class="form-group">
-    <label for="inputIntroduction">自己紹介文</label><br>
-    <%= f.text_field :introduction, class: "form-control introduction", id:"inputIntroduction" %>
-    </div>
-    <div class="form-group">
-    <%= f.submit "Update User", class: 'btn btn-secondary' %>
-    </div>
+   <%= render 'layouts/errors', obj: @user %>
+     <div class="form-group">
+       <%= f.label :name %>
+       <%= f.text_field :name, class: "form-control name" %>
+     </div>
+     <div class="form-group">
+       <%= f.label :image %>
+       <%= f.file_field :profile_image, class: "form-control-file user_image", accept: 'image/*' %>
+     </div>
+     <div class="form-group">
+       <%= f.label :introduction %>
+       <%= f.text_area :introduction, class: "form-control introduction" %>
+     </div>
+     <div class="form-group">
+       <%= f.submit "Update User", class: 'btn btn-secondary' %>
+     </div>
    <% end %>
   </div>
  </div>

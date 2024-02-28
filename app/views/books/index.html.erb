@@ -1,50 +1,19 @@
 <%= flash[:notice]%>
 
-<% if @book.errors.any? %>
-<div class="error-message">
- <h3><%= @book.errors.count %>errors prohibited this book from being saved:</h3>
-  <ul>
-    <% @book.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-  <% end %>
-</div>
-
 <div class='container px-5 px-sm-0'>
+ <%= render 'layouts/errors', obj: @book %>
  <div class="row">
   <div class="col-md-3">
-   <%= render 'list', user: @user %>
+   <h2>User info</h2>
+      <%= render 'users/info', user: current_user %>
+      <h2 class="mt-3">New book</h2>
+      <%= render 'form', book: @book %>
   </div>
 
   <div class="col-md-8 offset-md-1">
-   <%= render 'searches/search' %>
+   <%= render 'searches/form' %>
   <h1>Books</h1>
-  <table class='table table-hover table-inverse'>
-   <thead>
-    <tr>
-     <th></th>
-     <th>本のタイトル</th>
-     <th>感想</th>
-     <th colspan="3"></th>
-    </tr>
-   </thead>
-   <tbody>
-    <% @books.each do |book| %>
-    <tr>
-     <td><%= link_to user_path(book.user.id) do %>
-         <%= image_tag book.user.get_profile_image(100,100) %>
-         <% end %></td>
-     <td> <%= link_to book.title, book_path(book.id) %> </td>
-     <td> <%= book.body %> </td>
-     <td>
-      <%= render 'favorites/favorite', book: book %>
-     </td>
-     <td> <%= link_to "#{book.book_comments.count} コメント", book_path(book.id) %></td>
-    </tr>
-    <% end %>
-   </tbody>
-  </table>
+   <%= render 'index', books: @books%>
   </div>
  </div>
 </div>

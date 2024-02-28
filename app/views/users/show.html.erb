@@ -3,33 +3,16 @@
 <div class="container">
  <div class="row">
   <div class="col-md-3">
-  <%= render 'books/list', user: @user %>
+    <h2>User info</h2>
+      <%= render 'info', user: @user %>
+    <h2 class="mt-3">New book</h2>
+      <%= render 'books/form', book: @book %>
   </div>
 
   <div class="col-md-8 offset-md-1">
    <h2>Books</h2>
-   <table class='table table-hover table-inverse'>
-    <thead>
-     <tr>
-      <th></th>
-      <th>本のタイトル</th>
-      <th>感想</th>
-      <th colspan="3"></th>
-     </tr>
-    </thead>
-    <tbody>
-    <% @books.each do |book| %>
-     <tr>
-       <td><%= link_to user_path(@user.id) do %>
-           <%= image_tag @user.get_profile_image(100,100) %>
-           <% end %> </td>
-       <td> <%= link_to book.title, book_path(book.id) %> </td>
-       <td> <%= book.body %> </td>
-       <td><%= link_to " コメント", book_path(book.id) %></td>
-     </tr>
-    <% end %>
-    </tbody>
-   </table>
+     <%= render 'books/index',books: @books %>
   </div>
+  
  </div>
 </div>
