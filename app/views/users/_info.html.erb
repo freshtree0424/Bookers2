@@ -1,13 +1,39 @@
 <table class='table'>
   <tr><%= image_tag user.get_profile_image, size:'100x100' %></tr>
   <tr>
-	  <th>name</th>
+	  <th>名前</th>
 	  <th><%= user.name %></th>
   </tr>
   <tr>
-	  <th>introduction</th>
+	  <th>自己紹介</th>
 	  <th><%= user.introduction %></th>
   </tr>
+  <tr>
+	  <th>フォロー数</th>
+	  <th><%= user.follower.count %></th>
+  </tr>
+  <tr>
+	  <th>フォロワー数</th>
+	  <th><%= user.followed.count %></th>
+  </tr>
+  <tr>
+	  <th>
+         <% if (current_user.following? @user) && (@user.following? current_user)  %>
+           <% if @isRoom == true %>
+            <p class="user-show-room">
+              <a href="/rooms/<%= @roomId %>" class="btn btn-primary btn-lg">チャットへ</a>
+           <% else %>
+             <%= form_for @room do |f| %>
+               <%= fields_for @entry do |e| %>
+                  <%= e.hidden_field :user_id, value: @user.id %>
+               <% end %>
+                  <%= f.submit "チャットを始める", class:"btn btn-primary btn-lg user-show-chat"%>
+             <% end %>
+           <% end %>
+         <% end %>
+     </th>
+  </tr>
+  
 </table>
 　
 <div class='row'>

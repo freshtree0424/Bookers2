@@ -5,5 +5,6 @@ class BookComment < ApplicationRecord
   
   validates :comment, presence: true
   
+  has_many :view_counts, dependent: :destroy
   
 end

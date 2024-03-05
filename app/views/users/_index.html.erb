@@ -2,7 +2,7 @@
   <thead>
     <tr>
       <th>image</th>
-      <th>名前</th>
+      <th>name</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,7 +12,7 @@
         <td><%= image_tag user.get_profile_image, size: '100x100' %></td>
         <td><%= user.name %></td>
         <td>フォロー数：<%= user.follower.count %> </td>
-        <td>フォワー数：<%= user.followed.count %></td>
+        <td>フォロワー数：<%= user.followed.count %></td>
         <td>
         <% if current_user.following?(user) %>
             <%= link_to unfollow_path(user), method: :post do %>
