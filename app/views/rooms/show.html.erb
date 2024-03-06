@@ -1,7 +1,4 @@
 <div class="container">
-  <div class="left-button">
-    <%= link_to "ユーザー一覧に戻る", users_path, class:"btn btn-info" %>
-  </div>
 
   <% @entries.each do |e| %>
     <% unless e.user == current_user %>
@@ -9,7 +6,7 @@
      <strong>
       <%= image_tag e.user.get_profile_image, size:'100x100' %>
       <a class="rooms-user-link" href="/users/<%= e.user.id %>">
-        <%= e.user.name %>さん
+        <%= e.user.name %>さんとのチャットルーム
       </a>
      </strong>
     </div>
@@ -17,28 +14,34 @@
   <% end %>
 
 <hr>
-  <div class="chats">
-     <% if @messages.present? %>
-    　　 <% @messages.each do |message| %>
-         <% if @message.user_id == current_user.id %>
-          <p style="text-align: right;"><%= message.message %></p>
-         <% else %>
-          <p style="text-align: left;"><%= message.message %></p>
-         <% end %>
-       <% end %>
-     <% end %>
-  </div>
+  <div class="chat-messages">
+  <% @messages.each do |message| %>
+    <% if message.user_id == current_user.id %>
+      <div class="message self" align="right">
+        <td class="message-body"><%= message.message %></td>
+        <td class="message-image"><%= image_tag message.user.get_profile_image, size:'50x50' %></td>
+      </div>
+    <% else %>
+      <div class="message other" align="left">
+        <td class="message-image"><%= image_tag message.user.get_profile_image, size:'50x50' %></td>
+        <td class="message-body"><%= message.message %></td>
+      </div>
+    <% end %>
+  <% end %>
+</div>
 
     <div class="errors">
       <%= render "layouts/errors", obj: @message %>
     </div>
 
+<div class="row">
     <div class="posts">
       <%= form_with model: @message, local:false do |f| %>
-        <%= f.text_field :message, placeholder: "140字以内でメッセージを入力してください", size: 70, class: "form-text-field" %>
+        <%= f.text_field :message, placeholder: "140字以内でメッセージを入力してください", size: 95, class: "form-text-field" %>
         <%= f.hidden_field :room_id, value: @room.id %>
         <%= f.submit "投稿", class: "form-submit" %>
       <% end %>
     </div>
   </div>
+</div>
 </div>
