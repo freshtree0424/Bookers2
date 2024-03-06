@@ -10,13 +10,21 @@
     </div>
 
    <div class="col-md-8 offset-md-1">
-    <h2>Book detail</h2>
+    <h2>Book detail
+       <% if @book.user == current_user %>
+         <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success  edit_book_#{@book.id}" %></td>
+         <td><%= link_to 'Destroy', book_path(@book), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}"%></td>
+       <% end %>
+    </h2>
+    
     <table class='table'>
      <tr>
-       <td><%= link_to(@book.user) do %>
-           <%= image_tag @book.user.get_profile_image, size:"100x100" %><br>
+       <td align="center">
+           <%= link_to(@book.user) do %>
+           <%= image_tag @book.user.get_profile_image, size:"70x70" %><br>
            <%= @book.user.name%>
-           <% end %></td>
+           <% end %>
+       </td>
        <td><%= link_to @book.title, @book %></td>
        <td><%= @book.body %></td>
        <td id="favorite_btn_<%= @book.id %>">
@@ -26,11 +34,6 @@
          <%= render "book_comments/counter", book: @book %>
        </td>
        <td>閲覧数: <%= @book.view_counts.count %></td>
-       
-     <% if @book.user == current_user %>
-       <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success  edit_book_#{@book.id}" %></td>
-       <td><%= link_to 'Destroy', book_path(@book), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}"%></td>
-     <% end %>
      </tr>
     </table>
    
