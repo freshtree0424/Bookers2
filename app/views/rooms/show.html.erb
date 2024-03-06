@@ -19,8 +19,12 @@
 <hr>
   <div class="chats">
      <% if @messages.present? %>
-    　　 <% @messages.each do |m| %>
-       <p><%= m.message %></p>
+    　　 <% @messages.each do |message| %>
+         <% if @message.user_id == current_user.id %>
+          <p style="text-align: right;"><%= message.message %></p>
+         <% else %>
+          <p style="text-align: left;"><%= message.message %></p>
+         <% end %>
        <% end %>
      <% end %>
   </div>
@@ -30,7 +34,7 @@
     </div>
 
     <div class="posts">
-      <%= form_with model: @message do |f| %>
+      <%= form_with model: @message, local:false do |f| %>
         <%= f.text_field :message, placeholder: "140字以内でメッセージを入力してください", size: 70, class: "form-text-field" %>
         <%= f.hidden_field :room_id, value: @room.id %>
         <%= f.submit "投稿", class: "form-submit" %>

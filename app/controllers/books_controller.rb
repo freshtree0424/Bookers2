@@ -21,6 +21,24 @@ class BooksController < ApplicationController
      unless ViewCount.find_by(user_id: current_user.id, book_id: @book_detail.id)
        current_user.view_counts.create(book_id: @book_detail.id)
      end
+    @currentUserEntry = Entry.where(user_id: current_user.id)
+    @userEntry = Entry.where(user_id: @user.id)
+    if @user.id == current_user.id
+    else
+      @currentUserEntry.each do |cu|
+        @userEntry.each do |u|
+          if cu.room_id == u.room_id then
+            @isRoom = true
+            @roomId = cu.room_id
+          end
+        end
+      end
+      if @isRoom
+      else
+        @room = Room.new
+        @entry = Entry.new
+      end
+    end
   end
 
   def edit
