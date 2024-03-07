@@ -22,7 +22,7 @@
         <td align="center" ><%= user.follower.count %> </td>
         <td align="center"><%= user.followed.count %></td>
         <td>
-         <% if current_user != user%>        
+         <% if current_user != user%>
            <% if current_user.following?(user) %>
                <%= link_to "unfollow", unfollow_path(user), method: :post, class: "btn btn-sm btn-danger" %>
            <% else %>
