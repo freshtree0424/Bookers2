@@ -70,7 +70,10 @@
      </div>
     </nav>
    </header>
-   <main class="mb-auto">
+   <main>
+     <div class="d-flex justify-content-center mb-2">
+          <%= render 'searches/form' %>
+     </div>
     <%= yield %>
    </main>
   </body>
